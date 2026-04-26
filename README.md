@@ -66,20 +66,20 @@ argy auth login
 
 ## Key commands
 
-| Command | Description |
-|---|---|
-| `argy` | Open the interactive TUI |
-| `argy run "prompt"` | Autonomous execution (CI/CD) |
-| `argy auth login` | Authenticate via Device Flow or PAT |
-| `argy auth status` | Show auth status and credits |
-| `argy models` | List available models |
-| `argy agent list` | List available agents |
-| `argy mcp list` | List MCP servers |
-| `argy session list` | Browse session history |
-| `argy stats` | Usage statistics |
-| `argy acp` | Start the ACP server (IDE integration) |
-| `argy serve` | Start local HTTP server (SDK access) |
-| `argy upgrade` | Upgrade to the latest version |
+| Command             | Description                            |
+| ------------------- | -------------------------------------- |
+| `argy`              | Open the interactive TUI               |
+| `argy run "prompt"` | Autonomous execution (CI/CD)           |
+| `argy auth login`   | Authenticate via Device Flow or PAT    |
+| `argy auth status`  | Show auth status and credits           |
+| `argy models`       | List available models                  |
+| `argy agent list`   | List available agents                  |
+| `argy mcp list`     | List MCP servers                       |
+| `argy session list` | Browse session history                 |
+| `argy stats`        | Usage statistics                       |
+| `argy acp`          | Start the ACP server (IDE integration) |
+| `argy serve`        | Start local HTTP server (SDK access)   |
+| `argy upgrade`      | Upgrade to the latest version          |
 
 ---
 
@@ -164,37 +164,37 @@ Create `argy.json` or `argy.jsonc` at your project root:
     "security-review": {
       "description": "Full security audit",
       "template": "Run a comprehensive security audit...",
-      "agent": "security-auditor"
-    }
+      "agent": "security-auditor",
+    },
   },
 
   // MCP servers
   "mcp": {
     "filesystem": {
       "type": "local",
-      "command": ["npx", "@modelcontextprotocol/server-filesystem", "."]
-    }
+      "command": ["npx", "@modelcontextprotocol/server-filesystem", "."],
+    },
   },
 
   // Model settings
   "provider": {
     "argy-gateway": {
       "models": {
-        "claude-sonnet-4-5": { "temperature": 0.3 }
-      }
-    }
-  }
+        "claude-sonnet-4-5": { "temperature": 0.3 },
+      },
+    },
+  },
 }
 ```
 
 ### Key environment variables
 
-| Variable | Description |
-|---|---|
-| `ARGY_PAT` | Personal Access Token |
-| `ARGY_ENV` | Environment: `LOCAL` / `DEV` / `STAGING` / `PROD` |
-| `ARGY_SERVER_PASSWORD` | Password for `argy serve` |
-| `ARGY_AUTO_SHARE` | Auto-share all sessions |
+| Variable               | Description                                       |
+| ---------------------- | ------------------------------------------------- |
+| `ARGY_PAT`             | Personal Access Token                             |
+| `ARGY_ENV`             | Environment: `LOCAL` / `DEV` / `STAGING` / `PROD` |
+| `ARGY_SERVER_PASSWORD` | Password for `argy serve`                         |
+| `ARGY_AUTO_SHARE`      | Auto-share all sessions                           |
 
 ---
 
@@ -222,13 +222,13 @@ argy run "Deploy to staging" && echo "Deployed" || echo "Deployment failed"
 
 ## Built-in agents
 
-| Agent | Mode | Description |
-|---|---|---|
-| `build` | primary | Default. Full tool access with write governance |
-| `plan` | primary | Research-first, read-only by default |
-| `docgen` | primary | Generate PowerPoint and Excel documents |
-| `general` | subagent | General-purpose parallel sub-agent |
-| `explore` | subagent | Fast read-only codebase exploration |
+| Agent     | Mode     | Description                                     |
+| --------- | -------- | ----------------------------------------------- |
+| `build`   | primary  | Default. Full tool access with write governance |
+| `plan`    | primary  | Research-first, read-only by default            |
+| `docgen`  | primary  | Generate PowerPoint and Excel documents         |
+| `general` | subagent | General-purpose parallel sub-agent              |
+| `explore` | subagent | Fast read-only codebase exploration             |
 
 Custom agents can be defined in `.argy/agent/` as Markdown files with YAML frontmatter.
 
@@ -248,15 +248,15 @@ argy serve --port 4096
 ```
 
 ```typescript
-import { ArgyClient } from "@argy-cloud/code-sdk/v2";
+import { ArgyClient } from "@argy-cloud/code-sdk/v2"
 
-const client = new ArgyClient({ baseUrl: "http://localhost:4096" });
-const session = await client.sessions.create({ title: "Automated task" });
+const client = new ArgyClient({ baseUrl: "http://localhost:4096" })
+const session = await client.sessions.create({ title: "Automated task" })
 const stream = await client.messages.stream(session.id, {
   content: "Analyze the codebase and list all TODO comments",
-});
+})
 for await (const event of stream) {
-  console.log(event);
+  console.log(event)
 }
 ```
 
@@ -273,4 +273,4 @@ for await (const event of stream) {
 
 ---
 
-*Argy Code is a proprietary product. Binaries are distributed freely. Source code is not public.*
+_Argy Code is a proprietary product. Binaries are distributed freely. Source code is not public._
