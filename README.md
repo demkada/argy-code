@@ -45,7 +45,7 @@ scoop install argy
 ### npm (all platforms)
 
 ```bash
-npm install -g @argy-cloud/code
+npm install -g @argycloud/code
 ```
 
 ---
